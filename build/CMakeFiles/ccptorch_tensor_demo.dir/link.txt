@@ -1,0 +1,1 @@
+/opt/homebrew/bin/aarch64-apple-darwin24-g++-15 -g -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/ccptorch_tensor_demo.dir/examples/simple_tensor_demo.cpp.o -o ccptorch_tensor_demo  libccptorch.a

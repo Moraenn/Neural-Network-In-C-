@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/Users/xmoraennx/IT/portfolio/Neural-Network-In-C-/build",
+  "command": "/opt/homebrew/bin/aarch64-apple-darwin24-g++-15  -I/Users/xmoraennx/IT/portfolio/Neural-Network-In-C-/include -g -std=c++23 -arch arm64 -o CMakeFiles/ccptorch.dir/src/tensor.cpp.o -c /Users/xmoraennx/IT/portfolio/Neural-Network-In-C-/src/tensor.cpp",
+  "file": "/Users/xmoraennx/IT/portfolio/Neural-Network-In-C-/src/tensor.cpp",
+  "output": "CMakeFiles/ccptorch.dir/src/tensor.cpp.o"
+},
+{
+  "directory": "/Users/xmoraennx/IT/portfolio/Neural-Network-In-C-/build",
+  "command": "/opt/homebrew/bin/aarch64-apple-darwin24-g++-15  -I/Users/xmoraennx/IT/portfolio/Neural-Network-In-C-/include -g -std=c++23 -arch arm64 -o CMakeFiles/ccptorch_tensor_demo.dir/examples/simple_tensor_demo.cpp.o -c /Users/xmoraennx/IT/portfolio/Neural-Network-In-C-/examples/simple_tensor_demo.cpp",
+  "file": "/Users/xmoraennx/IT/portfolio/Neural-Network-In-C-/examples/simple_tensor_demo.cpp",
+  "output": "CMakeFiles/ccptorch_tensor_demo.dir/examples/simple_tensor_demo.cpp.o"
+}
+]

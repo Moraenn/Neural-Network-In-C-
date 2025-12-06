@@ -1,0 +1,2 @@
+/usr/bin/ar qc libccptorch.a CMakeFiles/ccptorch.dir/src/tensor.cpp.o
+/usr/bin/ranlib libccptorch.a

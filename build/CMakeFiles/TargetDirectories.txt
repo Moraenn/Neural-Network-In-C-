@@ -1,0 +1,4 @@
+/Users/xmoraennx/IT/portfolio/Neural-Network-In-C-/build/CMakeFiles/ccptorch.dir
+/Users/xmoraennx/IT/portfolio/Neural-Network-In-C-/build/CMakeFiles/ccptorch_tensor_demo.dir
+/Users/xmoraennx/IT/portfolio/Neural-Network-In-C-/build/CMakeFiles/edit_cache.dir
+/Users/xmoraennx/IT/portfolio/Neural-Network-In-C-/build/CMakeFiles/rebuild_cache.dir
