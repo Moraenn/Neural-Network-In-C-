@@ -3,12 +3,17 @@
 #include <cstddef>
 #include <print>
 
-int main() {
-    using namespace ccptorch;
+#define LOG(x) std::println("{} = {}", #x, (x));
 
-    Shape shape{2, 3};
-    Tensor a = zeros(shape);
-    Tensor b = ones(shape);
+
+int main() {
+
+    int val = 55;
+    LOG(val);
+
+    ccptorch::Shape shape{2, 3};
+    ccptorch::Tensor a = ccptorch::zeros(shape);
+    ccptorch::Tensor b = ccptorch::ones(shape);
 
     for (std::size_t i = 0; i < shape[0]; ++i) {
         for (std::size_t j = 0; j < shape[1]; ++j) {

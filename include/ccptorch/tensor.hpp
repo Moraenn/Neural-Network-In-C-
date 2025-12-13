@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <utility>
 #include <vector>
+#include <format>
 
 #include "device.hpp"
 
@@ -52,6 +53,27 @@ public:
         , strides_(compute_default_strides(shape_))
         , device_{device} {}
 
+    Tensor clone() const;
+
+    // Element-wise operations
+    Tensor add(const Tensor& a, const Tensor& b);
+    Tensor sub(const Tensor& a, const Tensor& b);
+    Tensor mul(const Tensor& a, const Tensor& b);
+    Tensor div(const Tensor& a, const Tensor& b);
+
+    // Scalar operations
+    Tensor add(const Tensor& a, Tensor::Scalar scalar);
+    Tensor mul(const Tensor& a, Tensor::Scalar scalar);
+
+    // Matrix operations
+    Tensor matmul(const Tensor& a, const Tensor& b);
+
+    // Activation functions (forward only for now)
+    Tensor relu(const Tensor& x);
+
+    // Utility
+    Tensor reshape(const Tensor& x, const Shape& new_shape);
+
     const Shape& shape() const noexcept {
         return shape_;
     }
@@ -66,6 +88,14 @@ public:
 
     Device device() const noexcept {
         return device_;
+    }
+
+    std::size_t numel() const noexcept {
+        return size();
+    }
+
+    const Shape& strides() const noexcept {
+        return strides_;
     }
 
     Scalar* data() noexcept {
@@ -84,6 +114,28 @@ public:
     const Scalar& operator()(std::initializer_list<std::size_t> indices) const {
         const std::size_t flat_index = compute_flat_index(indices);
         return storage_->data()[flat_index];
+    }
+
+    Scalar& operator[](std::size_t index) {
+        if (shape_.size() != 1) {
+            throw std::logic_error("Tensor::operator[]: tensor must be one dimensional");
+        }
+        if (index >= shape_[0]) {
+            throw std::out_of_range("Tensor::operator[]: index is out of range");
+        }
+
+        return storage_->data()[index];
+    }
+
+    const Scalar& operator[](std::size_t index) const {
+        if (shape_.size() != 1) {
+            throw std::logic_error("Tensor::operator[]: tensor must be one dimensional");
+        }
+        if (index >= shape_[0]) {
+            throw std::out_of_range("Tensor::operator[]: index is out of range");
+        }
+
+        return storage_->data()[index];
     }
 
     bool empty() const noexcept {
@@ -105,6 +157,11 @@ private:
             result *= dim;
         }
         return result;
+    }
+    
+    friend std::ostream& operator<<(std::ostream& stream, const Tensor& tensor){
+        stream << std::format("Tensor shape: [{}, {}] on device: {}", tensor.shape_[0], tensor.shape_[1], tensor.device_.to_string());
+        return stream;
     }
 
     static Shape compute_default_strides(const Shape& shape) {
@@ -141,6 +198,9 @@ private:
 
 Tensor zeros(const Shape& shape, Device device = Device::cpu());
 Tensor ones(const Shape& shape, Device device = Device::cpu());
+
+Tensor full(const Shape& shape, Tensor::Scalar num, Device device = Device::cpu());
+Tensor rand(const Shape& shape, Tensor::Scalar lbound = Tensor::Scalar{-1}, Tensor::Scalar ubound=Tensor::Scalar{1}, Device device = Device::cpu());
 
 // TODO: добавить фабрики вроде full, arange, rand, randn
 
